@@ -4,6 +4,9 @@
 
 <div id="movies">
   <% @movies.each do |movie| %>
+  <% if movie.image.attached? %>
+    <image src="<%=(url_for(movie.image))%>">
+  <% end %>
     <%= render movie %>
     <p>
       <%= link_to "Show this movie", movie %>

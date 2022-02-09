@@ -1,5 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
+<% if @movie.image.attached? %>
+  <image src="<%=(url_for(@movie.image))%>">
+<% end %>
+
 <%= render @movie %>
 
 <div>

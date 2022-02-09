@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :comments
 
   Rails.application.routes.draw do
+  resources :comments
   devise_scope :user do
     # Redirests signing out users back to sign-in
     get "users", to: "devise/sessions#new"
