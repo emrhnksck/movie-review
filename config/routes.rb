@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :comments
+
 
   Rails.application.routes.draw do
   resources :comments
@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   root "movies#index"
   # Defines the root path route ("/")
   # root "articles#index"
-    resources :movies
+    resources :movies do
+      resources :comments
+    end
 end
