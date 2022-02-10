@@ -2,16 +2,17 @@
 
 <h1>Movies</h1>
 
+<div class="row">
 <div id="movies">
   <% @movies.each do |movie| %>
-  <% if movie.image.attached? %>
-    <image src="<%=(url_for(movie.image))%>">
-  <% end %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
+  <div class="card col" style="width: 18rem;">
+    <img src="<%=(url_for(movie.image))%>" class="card-img-to">
+    <div class="card-body">
+      <h5 class="card-title"><%= movie.name %></h5>
+      <p class="card-text"><%= movie.description %></p>
+      <%= link_to "Show Movie", movie_path(movie) , class:"btn btn-primary" %>
+    </div>
+  </div>
   <% end %>
 </div>
-
-<%= link_to "New movie", new_movie_path %>
+</div>
