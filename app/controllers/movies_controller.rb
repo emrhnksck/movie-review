@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[upvote downvote]
 
   # GET /movies or /movies.json
   def index
@@ -12,16 +13,40 @@ class MoviesController < ApplicationController
 
   # GET /movies/new
   def new
-    @movie = Movie.new
+    @movie = current_user.movies.build
   end
 
   # GET /movies/1/edit
   def edit
   end
 
+  def upvote
+
+    @movie = Movie.find(params[:id])
+    @movie.upvote_from current_user
+  end
+
+  def downvote
+    @movie = Movie.find(paras[:id])
+    @movie.downvote_from current_user
+  end
+
+  def favorite
+    type = params[:type]
+    if type == "favorite"
+      current_user.movies << @movie
+      redirect_to :back, notice: "You favorited #{@movie.name}"
+    elsif tyoe == "unfavorite"
+      current_user.favorites.delete(@movie)
+      redirect_to :back, notice: :"Unfavorited #{@movie.name}"
+    else
+      redirect_to :back, notice: "Nothing happened"
+    end
+  end
+
   # POST /movies or /movies.json
   def create
-    @movie = Movie.new(movie_params)
+    @movie = current_user.movies.build(movie_params)
 
     respond_to do |format|
       if @movie.save
@@ -65,6 +90,6 @@ class MoviesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def movie_params
-      params.require(:movie).permit(:name, :description, :image)
+      params.require(:movie).permit(:name, :description, :image, :user_id)
     end
 end

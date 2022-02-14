@@ -3,7 +3,6 @@
 <h1>Movies</h1>
 
 <div class="row">
-
   <% @movies.each do |movie| %>
 
   <div class="col-3 ms-6 card" style="width: 18rem;">
@@ -11,6 +10,16 @@
     <div class="card-body">
       <h5 class="card-title"><%= movie.name %></h5>
       <p class="card-text"><%= movie.description %></p>
+
+      <%= button_to like_movie_path(movie), method: :put do%>
+      Like
+      <%= movie.get_upvotes.size%>
+      <% end %>
+
+      <%= button_to unlike_movie_path(movie), method: :put do %>
+      Unlike
+      <%= movie.get_downvotes.size %>
+      <% end %>
       <%= link_to "Show Movie", movie_path(movie) , class:"btn btn-primary" %>
     </div>
   </div>

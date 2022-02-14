@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_09_213311) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_14_141458) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -49,11 +49,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_09_213311) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "favorite_movies", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_favorite_movies_on_movie_id"
+    t.index ["user_id"], name: "index_favorite_movies_on_user_id"
+  end
+
   create_table "movies", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_movies_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,8 +79,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_09_213311) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.string "votable_type"
+    t.integer "votable_id"
+    t.string "voter_type"
+    t.integer "voter_id"
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["votable_type", "votable_id"], name: "index_votes_on_votable"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+    t.index ["voter_type", "voter_id"], name: "index_votes_on_voter"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "movies"
   add_foreign_key "comments", "users"
+  add_foreign_key "favorite_movies", "movies"
+  add_foreign_key "favorite_movies", "users"
+  add_foreign_key "movies", "users"
 end

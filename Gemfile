@@ -29,10 +29,14 @@ gem 'simple_form'
 gem "jbuilder"
 
 gem "devise"
+
+gem 'acts_as_votable'
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
 gem "bootstrap"
+
+ gem 'bootstrap-icons-helper'
 
 gem 'jquery-rails'
 

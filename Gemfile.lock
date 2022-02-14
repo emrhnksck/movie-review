@@ -66,6 +66,7 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts_as_votable (0.13.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (10.4.2.0)
@@ -78,6 +79,11 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.9.3, < 3)
       sassc-rails (>= 2.0.0)
+    bootstrap-icons (1.0.11)
+      nokogiri (~> 1)
+    bootstrap-icons-helper (2.0.0)
+      bootstrap-icons (~> 1)
+      rails (>= 6)
     builder (3.2.4)
     capybara (3.36.0)
       addressable
@@ -260,8 +266,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_votable
   bootsnap
   bootstrap
+  bootstrap-icons-helper
   capybara
   debug
   devise
