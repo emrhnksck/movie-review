@@ -32,3 +32,29 @@ h1{
 .textstyle{
   font-size: 5rem;
 }
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375 rem 0.75 rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+    .form-signin {
+        margin-bottom: 10
+    px
+    ;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }

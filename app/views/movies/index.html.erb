@@ -5,7 +5,7 @@
 <div class="row">
   <% @movies.each do |movie| %>
 
-  <div class="col-3 ms-6 card" style="width: 18rem;">
+  <div class="col-3 ms-5 card" style="width: 18rem;">
     <img src="<%=(url_for(movie.image))%>" class="card-img-to">
     <div class="card-body">
       <h5 class="card-title"><%= movie.name %></h5>
