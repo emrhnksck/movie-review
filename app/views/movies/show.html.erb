@@ -10,7 +10,12 @@
 <div class="container">
   <%= turbo_stream_from "comments" %>
   <%= turbo_frame_tag "comments" do %>
-  <p class="textstyle"><%= render @movie.comments %></p>
+  <% @movie.comments.each do |comment| %>
+  <div class="comments">
+      <%= comment.content %>
+  </div>
+ <% end %>
+
   <% end %>
 </div>
 
@@ -21,5 +26,7 @@
 
   <%= button_to "Destroy this movie", @movie, method: :delete , class:"btn btn-primary ms-3"%>
 
+<%= turbo_frame_tag "comment_form" do %>
   <%= render "comments/new" %>
+<% end %>
 </div>
