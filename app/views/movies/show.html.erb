@@ -8,7 +8,10 @@
 <%= render @movie %>
 
 <div class="container">
+  <%= turbo_stream_from "comments" %>
+  <%= turbo_frame_tag "comments" do %>
   <p class="textstyle"><%= render @movie.comments %></p>
+  <% end %>
 </div>
 
 

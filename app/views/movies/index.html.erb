@@ -11,7 +11,8 @@
       <h5 class="card-title"><%= movie.name %></h5>
       <p class="card-text"><%= movie.description %></p>
 
-      <%= button_to like_movie_path(movie), method: :put do%>
+
+      <%= button_to like_movie_path(movie , format: :turbo_stream), method: :put do%>
       Like
       <%= movie.get_upvotes.size%>
       <% end %>
