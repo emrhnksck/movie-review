@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
   end
 
   def downvote
-    @movie = Movie.find(paras[:id])
+    @movie = Movie.find(params[:id])
     @movie.downvote_from current_user
   end
 
